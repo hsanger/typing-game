@@ -1,6 +1,5 @@
 function word = getRandomWord()
     wordPossibilities = [];
-
-    index = randi;
-
+    index = randi(length(wordPossibilities));
+    word = wordPossibilities(index);
 end
