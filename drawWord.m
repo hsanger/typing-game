@@ -7,6 +7,7 @@ function img = drawWord(img, windowWidth, windowHeight, chars)
     for i = 1:numChars
         % Find the sprites corresponding to the index of each letter
         ch = double(chars(i));
+        disp(chars(i))
         letterArray(i) = LETTER_INDICES(ch - CHAR_CODE_A + 1);
     end
     start = floor(windowWidth / 2 - numChars / 2) + 1; % Horizontally center the word
