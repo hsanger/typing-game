@@ -4,6 +4,7 @@ close all;
 
 WINDOW_WIDTH = 16;
 WINDOW_HEIGHT = 12;
+WORDS = load('words.txt');
 
 % Declare indices of the sprites in the spritesheet
 fullHeart = 731;
@@ -20,7 +21,7 @@ scene = simpleGameEngine("retro_pack.png", 16, 16, 5, [0, 0, 0]);
 
 % Initialize the image
 img = ones(WINDOW_HEIGHT, WINDOW_WIDTH);
-img = drawWord(img, WINDOW_WIDTH, WINDOW_HEIGHT, 'testing');
+img = drawWord(img, WINDOW_WIDTH, WINDOW_HEIGHT, getRandomWord(WORDS));
 drawScene(scene, img);
 text(1000, 50, "Score", "FontSize", 20);
 

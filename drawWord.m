@@ -9,6 +9,6 @@ function img = drawWord(img, windowWidth, windowHeight, chars)
         ch = double(chars(i));
         letterArray(i) = LETTER_INDICES(ch - CHAR_CODE_A + 1);
     end
-    start = floor(windowWidth / 2 - numChars / 2) + 1;
+    start = floor(windowWidth / 2 - numChars / 2) + 1; % Horizontally center the word
     img(windowHeight - 1, start:start + numChars - 1) = letterArray;
 end
