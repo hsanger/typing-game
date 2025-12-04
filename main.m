@@ -16,7 +16,7 @@ number7 = 955;
 
 isPlaying = true;
 
-while isPlaying;
+while isPlaying
 health = 10;
 score = 0;
     while health > 0
