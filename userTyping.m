@@ -1,7 +1,6 @@
 % Danny Lin
 function isCorrect = userTyping(word, gameScene, img, windowWidth, windowHeight) %figure out a way to not count things like []\;,. without hardcoding a bunch of conditoinal
      userInput = '';
-     fprintf(word);
      key = getKeyboardInput(gameScene);
         while ~strcmp(key,'return')
         if strcmp(key, 'backspace')
