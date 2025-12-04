@@ -11,7 +11,7 @@ function isCorrect = userTyping(word, gameScene, img, windowWidth, windowHeight)
             userInput = [userInput char(key)];
         else            
         end
-        img = drawWord(img, windowWidth, windowHeight, userInput);
+        img = drawWord(img, windowWidth, windowHeight, userInput, 1);
         drawScene(gameScene, img);
         key = getKeyboardInput(gameScene);
         end 

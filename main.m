@@ -21,7 +21,7 @@ scene = simpleGameEngine("retro_pack.png", 16, 16, 5, [0, 0, 0]);
 img = ones(WINDOW_HEIGHT, WINDOW_WIDTH);
 
 randomWord = char(getRandomWord(WORDS));
-%img = drawWord(img, WINDOW_WIDTH, WINDOW_HEIGHT, randomWord);
+img = drawWord(img, WINDOW_WIDTH, WINDOW_HEIGHT, randomWord, 2);
 img = drawHealth(img, 7);
 drawScene(scene, img);
 text(1000, 50, "Score", "FontSize", 20);
