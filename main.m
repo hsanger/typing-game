@@ -19,13 +19,16 @@ scene = simpleGameEngine("retro_pack.png", 16, 16, 5, [0, 0, 0]);
 
 % Initialize the image
 img = ones(WINDOW_HEIGHT, WINDOW_WIDTH);
+
 img = drawWord(img, WINDOW_WIDTH, WINDOW_HEIGHT, char(getRandomWord(WORDS)));
 img = drawHealth(img, 7);
 drawScene(scene, img);
 text(1000, 50, "Score", "FontSize", 20);
 
 % Wait for any keyboard input to advance to the next scene
+wordIsCorrect = userTyping(char(getRandomWord(WORDS)), scene, img, WINDOW_WIDTH, WINDOW_HEIGHT)
 getKeyboardInput(scene);
+
 
 % Clear the figure
 clf;
