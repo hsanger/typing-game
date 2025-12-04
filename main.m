@@ -16,8 +16,8 @@ number7 = 955;
 
 isPlaying = true;
 
-while isPlaying
-health = 10;
+while isPlaying %loop for as long as the player is playing
+health = 10;  %initialize values
 score = 0;
     while health > 0
  
@@ -35,15 +35,14 @@ text(1000, 50, "Score: " +score, "FontSize", 20, Color=[1 0 0]);
 
 % Wait for any keyboard input to advance to the next scene
 wordIsCorrect = userTyping(randomWord, scene, img, WINDOW_WIDTH, WINDOW_HEIGHT)
-
+%Determine what to do after results
 if wordIsCorrect
     score = score + 1;
 else 
     health = health - 1;
 end
-
-
     end
+    %prompt and input for user if they want to restart
     text(35, 400, "Would you like to play again? (Y for yes / N for no)", "FontSize", 20, Color=[1 0 0]);
     uInput = getKeyboardInput(scene);  
     if strcmp(uInput, 'n')
