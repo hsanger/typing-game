@@ -11,9 +11,6 @@ worldData = char(readlines('world.txt'));
 world = createWorld(worldData);
 
 % Declare indices of the sprites in the spritesheet
-player = 307;
-platform = 555;
-incompletePlatform = 487;
 number0 = 948;
 number2 = 950;
 number7 = 955;
@@ -26,12 +23,6 @@ img = ones(WINDOW_HEIGHT, WINDOW_WIDTH);
 img(3:end-3, :) = world;
 img = drawWord(img, WINDOW_WIDTH, WINDOW_HEIGHT, char(getRandomWord(words)));
 img = drawHealth(img, 7);
-img(4, 2) = player;
 drawScene(scene, img);
+[img, playerX, playerY] = movePlayer(scene, img, 2, 4, 1);
 text(1000, 50, "Score", "FontSize", 20);
-
-% Wait for any keyboard input to advance to the next scene
-k = getKeyboardInput(scene)
-
-% Clear the figure
-clf;
