@@ -1,7 +1,9 @@
 % Henry Sanger
 function world = createWorld(worldData)
     [height, width] = size(worldData);
-    world = zeros(height, width);
+    world = zeros(height, width); % Preallocate array for performance
+    % Iterate over each coordinate of the world, converting letters to
+    % sprite indices
     for x = 1:width
         for y = 1:height
             ch = worldData(y, x);
@@ -12,7 +14,7 @@ function world = createWorld(worldData)
             elseif ch == 'f'
                 world(y, x) = Sprites.Finish;
             else
-                world(y, x) = 1;
+                world(y, x) = 1; % Blank space
             end
         end
     end

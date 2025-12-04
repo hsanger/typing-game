@@ -16,6 +16,7 @@ classdef Sprites
         % UI
         FullHeart = 731;
         EmptyHeart = 729;
-        Numbers = 948:956;
+        Numbers = 948:957;
+        Letters = [980:992, 1012:1024];
     end
 end
