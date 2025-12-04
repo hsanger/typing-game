@@ -14,6 +14,13 @@ number0 = 948;
 number2 = 950;
 number7 = 955;
 
+isPlaying = true;
+
+while isPlaying;
+health = 10;
+score = 0;
+    while health > 0
+ 
 % Create the scene
 scene = simpleGameEngine("retro_pack.png", 16, 16, 5, [0, 0, 0]);
 
@@ -22,13 +29,27 @@ img = ones(WINDOW_HEIGHT, WINDOW_WIDTH);
 
 randomWord = char(getRandomWord(WORDS));
 img = drawWord(img, WINDOW_WIDTH, WINDOW_HEIGHT, randomWord, 2);
-img = drawHealth(img, 7);
+img = drawHealth(img, health);
 drawScene(scene, img);
-text(1000, 50, "Score", "FontSize", 20);
+text(1000, 50, "Score: " +score, "FontSize", 20, Color=[1 0 0]);
 
 % Wait for any keyboard input to advance to the next scene
 wordIsCorrect = userTyping(randomWord, scene, img, WINDOW_WIDTH, WINDOW_HEIGHT)
-getKeyboardInput(scene);
+
+if wordIsCorrect
+    score = score + 1;
+else 
+    health = health - 1;
+end
+
+
+    end
+    text(35, 400, "Would you like to play again? (Y for yes / N for no)", "FontSize", 20, Color=[1 0 0]);
+    uInput = getKeyboardInput(scene);  
+    if strcmp(uInput, 'n')
+       isPlaying = false;
+    end
+end
 
 
 % Clear the figure
