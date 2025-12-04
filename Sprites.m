@@ -2,6 +2,7 @@
 classdef Sprites
     properties (Constant)
         PlayerAnim = 307:311;
+        PlayerDead = 312;
 
         % World
         Wall = 17;

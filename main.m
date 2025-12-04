@@ -5,6 +5,14 @@ clc;
 WINDOW_WIDTH = 20;
 WINDOW_HEIGHT = 19;
 
+% Load sounds
+step = loadSound('step.mp3');
+monsterEncounter = loadSound('monster-encounter.mp3');
+monsterDeath = loadSound('monster-death.mp3');
+damage = loadSound('damage.mp3');
+win = loadSound('win.mp3');
+lose = loadSound('lose.mp3');
+
 % Load a list of random words from a file
 words = readlines('words.txt');
 
@@ -73,6 +81,8 @@ while isPlaying
         % scene; otherwise, reset their position to the previous one
         newTile = img(playerY, playerX);
         if newTile == 1 % is blank
+            % Play step sound
+            play(step);
             img(oldPlayerY, oldPlayerX) = 1;
             img(playerY, playerX) = Sprites.PlayerAnim(playerAnimFrame);
             % Advance to the next animation frame, using mod to wrap around to the beginning when the end is reached
@@ -83,10 +93,14 @@ while isPlaying
                 img = drawWord(img, WINDOW_WIDTH, WINDOW_HEIGHT, 'youwin', 1);
                 img = drawWord(img, WINDOW_WIDTH, WINDOW_HEIGHT, 'youwin', 0);
                 drawScene(scene, img);
+                play(win);
                 break;
             % If player tries to walk into a monster, trigger an encounter
             % If the tile isn't blank, a wall, or the finish, it must be a monster!
             elseif newTile ~= Sprites.Wall
+                % Play encounter sound effect
+                play(monsterEncounter);
+
                 % Get a random word
                 randomWord = char(getRandomWord(words));
 
@@ -100,9 +114,11 @@ while isPlaying
                     img(playerY, playerX) = 1; % The monster is vanquished!
                     score = score + 1;
                     img = drawScore(img, score);
+                    play(monsterDeath);
                 else 
                     health = health - 1;
                     img = drawHealth(img, health);
+                    play(damage);
                 end
 
                 % Wait a second then clear words
@@ -117,6 +133,16 @@ while isPlaying
     
         % Update the scene
         drawScene(scene, img);
+    end
+
+    % If health is 0, player lost, so change player sprite to dead and
+    % play death sound effect (Henry Sanger)
+    if health <= 0
+        img(playerY, playerX) = Sprites.PlayerDead;
+        img = drawWord(img, WINDOW_WIDTH, WINDOW_HEIGHT, 'youlose', 1);
+        img = drawWord(img, WINDOW_WIDTH, WINDOW_HEIGHT, 'youlose', 0);
+        drawScene(scene, img);
+        play(lose);
     end
 
     % Prompt the user to play again (Danny Lin)
