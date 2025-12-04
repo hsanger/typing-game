@@ -2,6 +2,7 @@
 function img = drawWord(img, windowWidth, windowHeight, chars)
     LETTER_INDICES = [980:992, 1012:1024]; % Locations of the letters in spritesheet
     CHAR_CODE_A = double('a'); % Character code of the letter a, used to calculate letter position
+    img(windowHeight - 1, :) = 1;  %clears the row
     numChars = length(chars);
     letterArray = zeros(1, numChars); % Preallocate array for performance
     for i = 1:numChars
